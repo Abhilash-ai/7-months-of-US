@@ -153,50 +153,6 @@ export default function FinalReveal({ onReplay }) {
                 </p>
               </div>
 
-              {/* Keepsake Photo Attached to the Letter */}
-              <div className="my-8 max-w-sm mx-auto">
-                <div className="relative bg-white p-3.5 pb-6 rounded-2xl shadow-polaroid border border-cream-300 transform -rotate-1 hover:rotate-0 transition-transform duration-300">
-                  {/* Washi Tape Pin */}
-                  <div className="washi-tape -top-2.5 left-1/2 -translate-x-1/2 rotate-[-2deg] z-10" />
-
-                  {/* Photo Frame */}
-                  <div
-                    onClick={() => {
-                      if (letterPhoto) {
-                        soundEngine.playPop();
-                        setIsPhotoZoomed(true);
-                      }
-                    }}
-                    className="relative aspect-[4/3] rounded-xl bg-gradient-to-br from-cream-100 via-rose-50 to-amber-50 border border-cream-200 overflow-hidden flex flex-col items-center justify-center group/photo shadow-inner cursor-pointer"
-                    title="Click to view our keepsake photo in full detail"
-                  >
-                    <img
-                      src={letterPhoto}
-                      alt="Our Keepsake Photo"
-                      className="w-full h-full object-cover rounded-lg group-hover/photo:scale-105 transition-transform duration-300"
-                    />
-
-                    {/* Enlarge Zoom Overlay */}
-                    <div className="absolute inset-0 bg-ink-900/30 opacity-0 group-hover/photo:opacity-100 transition-opacity flex items-center justify-center text-white backdrop-blur-[1px] pointer-events-none rounded-xl">
-                      <div className="flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-ink-900/60 text-xs font-sans">
-                        <ZoomIn className="w-3.5 h-3.5" />
-                        <span>View full size</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Handwritten Polaroid Caption */}
-                  <div className="mt-3 text-center px-1">
-                    <p className="font-handwriting text-lg text-ink-800 leading-tight">
-                      “Seven months of us, in one precious frame.” ❤️
-                    </p>
-                    <span className="text-[10px] font-serif text-ink-400 block mt-1 tracking-wider">
-                      BUBU & DUDU • OCTOBER 2026
-                    </span>
-                  </div>
-                </div>
-              </div>
-
               <div className="pt-6 border-t border-cream-200 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <p className="font-serif text-xl sm:text-2xl text-burgundy-700 font-bold">
                   Happy 7 months, Dudu. 🫂
@@ -214,6 +170,55 @@ export default function FinalReveal({ onReplay }) {
             </div>
           </div>
         </TiltCard>
+
+        {/* Keepsake Photo Polaroid - After the Letter */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+          className="max-w-md mx-auto pt-2"
+        >
+          <TiltCard maxTilt={5} className="bg-white p-4 sm:p-5 pb-7 sm:pb-8 rounded-3xl shadow-polaroid border border-cream-300 transform -rotate-1 hover:rotate-0 transition-transform duration-300">
+            {/* Washi Tape Pin */}
+            <div className="washi-tape -top-3 left-1/2 -translate-x-1/2 rotate-[-2deg] z-10" />
+
+            {/* Photo Container */}
+            <div
+              onClick={() => {
+                if (letterPhoto) {
+                  soundEngine.playPop();
+                  setIsPhotoZoomed(true);
+                }
+              }}
+              className="relative aspect-[3/4] rounded-2xl bg-gradient-to-br from-cream-100 via-rose-50 to-amber-50 border border-cream-200 overflow-hidden flex flex-col items-center justify-center group/photo shadow-inner cursor-pointer"
+              title="Click to view our keepsake photo in full detail"
+            >
+              <img
+                src={letterPhoto}
+                alt="Bubu and Dudu Keepsake Photo"
+                className="w-full h-full object-cover rounded-xl group-hover/photo:scale-105 transition-transform duration-300"
+              />
+
+              {/* Enlarge Zoom Overlay */}
+              <div className="absolute inset-0 bg-ink-900/30 opacity-0 group-hover/photo:opacity-100 transition-opacity flex items-center justify-center text-white backdrop-blur-[1px] pointer-events-none rounded-2xl">
+                <div className="flex items-center space-x-1.5 px-4 py-2 rounded-full bg-ink-900/60 text-xs font-sans font-medium shadow-md">
+                  <ZoomIn className="w-4 h-4 mr-1" />
+                  <span>View full size</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Handwritten Polaroid Caption */}
+            <div className="mt-4 text-center px-2">
+              <p className="font-handwriting text-2xl text-ink-800 leading-snug">
+                “Seven months of us, in one precious frame.” ❤️
+              </p>
+              <span className="text-xs font-serif text-burgundy-700 font-semibold block mt-1 tracking-wider uppercase">
+                BUBU & DUDU • OCTOBER 2026
+              </span>
+            </div>
+          </TiltCard>
+        </motion.div>
 
         {/* Action Buttons: Replay & Share */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
@@ -255,7 +260,7 @@ export default function FinalReveal({ onReplay }) {
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative max-w-lg w-full bg-white rounded-3xl p-5 shadow-2xl overflow-hidden cursor-default text-center"
+              className="relative max-w-md w-full bg-white rounded-3xl p-5 shadow-2xl overflow-hidden cursor-default text-center"
             >
               <button
                 onClick={() => setIsPhotoZoomed(false)}
@@ -265,7 +270,7 @@ export default function FinalReveal({ onReplay }) {
                 <X className="w-5 h-5" />
               </button>
 
-              <div className="rounded-2xl overflow-hidden aspect-[4/3] border border-cream-200 mb-4 bg-cream-100 flex items-center justify-center">
+              <div className="rounded-2xl overflow-hidden aspect-[3/4] max-h-[70vh] border border-cream-200 mb-4 bg-cream-100 flex items-center justify-center">
                 <img
                   src={letterPhoto}
                   alt="Our Keepsake Photo"
