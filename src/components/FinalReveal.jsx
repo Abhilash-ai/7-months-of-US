@@ -35,7 +35,10 @@ export default function FinalReveal({ onReplay }) {
 
   const handleCopyLink = () => {
     soundEngine.playPop();
-    navigator.clipboard?.writeText(window.location.href);
+    const shareUrl = window.location.origin.includes('localhost') || window.location.origin.includes('127.0.0.1')
+      ? 'https://7-months-of-us-two.vercel.app/'
+      : window.location.href;
+    navigator.clipboard?.writeText(shareUrl);
     setCopiedLink(true);
     setTimeout(() => setCopiedLink(false), 2500);
   };
