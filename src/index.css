@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    background-color: #FAF7F2;
+    color: #231D1A;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+  }
+}
+
+/* Custom romantic subtle noise & paper grain background */
+.paper-texture {
+  background-color: #FAF7F2;
+  background-image: 
+    radial-gradient(#C5A059 0.5px, transparent 0.5px),
+    radial-gradient(#722F37 0.4px, #FAF7F2 0.4px);
+  background-size: 32px 32px;
+  background-position: 0 0, 16px 16px;
+  background-opacity: 0.03;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+  background: rgba(255, 253, 249, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 
+    0 10px 30px -5px rgba(114, 47, 55, 0.05),
+    0 4px 12px 0 rgba(35, 29, 26, 0.03),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.glass-card-dark {
+  background: rgba(56, 48, 44, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.25);
+}
+
+.glass-card-warm {
+  background: rgba(253, 246, 240, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(250, 210, 184, 0.6);
+  box-shadow: 0 10px 32px -6px rgba(195, 74, 74, 0.08);
+}
+
+/* Washi Tape Accent */
+.washi-tape {
+  position: absolute;
+  height: 24px;
+  width: 90px;
+  background: rgba(231, 208, 118, 0.45);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  transform: rotate(-3deg);
+  border-left: 2px dashed rgba(255,255,255,0.4);
+  border-right: 2px dashed rgba(255,255,255,0.4);
+}
+
+.washi-tape-pink {
+  background: rgba(242, 186, 196, 0.55);
+  transform: rotate(3deg);
+}
+
+/* Wax Seal Button */
+.wax-seal {
+  background: radial-gradient(circle at 35% 35%, #9B3B49, #722F37 70%, #43141A);
+  box-shadow: 
+    0 6px 18px rgba(114, 47, 55, 0.4),
+    inset 0 2px 3px rgba(255, 255, 255, 0.3),
+    inset 0 -3px 5px rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(212, 175, 55, 0.4);
+}
+
+/* Gold foil sheen */
+.gold-shimmer {
+  background: linear-gradient(
+    135deg,
+    #BF953F 0%,
+    #FCF6BA 25%,
+    #B38728 50%,
+    #FBF5B7 75%,
+    #AA771C 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-border {
+  border-image: linear-gradient(135deg, #E7D076, #D4AF37, #C5A059, #F4E7B2) 1;
+}
+
+/* Smooth custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(250, 247, 242, 0.6);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(114, 47, 55, 0.2);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(114, 47, 55, 0.4);
+}
+
+/* 3D Perspective container */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* Custom Heartbeat Keyframe */
+@keyframes heartPulse {
+  0% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(195, 74, 74, 0.3)); }
+  14% { transform: scale(1.12); filter: drop-shadow(0 0 22px rgba(195, 74, 74, 0.6)); }
+  28% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(195, 74, 74, 0.3)); }
+  42% { transform: scale(1.18); filter: drop-shadow(0 0 26px rgba(195, 74, 74, 0.7)); }
+  70% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(195, 74, 74, 0.3)); }
+  100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(195, 74, 74, 0.3)); }
+}
+
+.animate-heart-pulse {
+  animation: heartPulse 2.8s ease-in-out infinite;
+}
+
+/* Kintsugi Gold crack animation */
+@keyframes goldGlow {
+  0%, 100% { opacity: 0.6; filter: drop-shadow(0 0 2px #E7D076); }
+  50% { opacity: 1; filter: drop-shadow(0 0 8px #D4AF37); }
+}
+
+.animate-kintsugi {
+  animation: goldGlow 3s ease-in-out infinite;
+}
+
+/* Floating particles */
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  15% { opacity: 0.8; }
+  85% { opacity: 0.8; }
+  100% { transform: translateY(-120px) rotate(45deg); opacity: 0; }
+}
